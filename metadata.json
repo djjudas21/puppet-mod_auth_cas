@@ -8,7 +8,10 @@
   "project_page": "https://github.com/djjudas21/puppet-mod_auth_cas",
   "issues_url": "https://github.com/djjudas21/puppet-mod_auth_cas/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    }
   ]
 }
 
