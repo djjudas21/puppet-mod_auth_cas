@@ -32,7 +32,12 @@
 # Copyright 2015 Jonathan Gazeley, unless otherwise noted.
 #
 class mod_auth_cas (
-  $cacert,
+  $certificatepath,
+  $loginurl,
+  $validateurl,
+  $proxyvalidateurl,
+  $path = '/cas',
+  $version = 1,
 ) {
 
   package {'mod_auth_cas': ensure => installed}
@@ -45,10 +50,10 @@ class mod_auth_cas (
     source  => 'puppet:///modules/httpd/mod_auth_cas/auth_cas.conf',
     notify  => Service['httpd'],
     require => Package['httpd'],
-    }
+  }
 
   # Prepare the CAS cache directory
-  file { [ '/cas', '/cas/cache'] :
+  file { [ $path, "${path}/cache"] :
     ensure  => directory,
     owner   => 'root',
     group   => 'apache',
@@ -59,7 +64,7 @@ class mod_auth_cas (
   }
 
   # Don't create it, but do set security context
-  file { '/cas/cache/.metadata':
+  file { "${path}/cache/.metadata":
     owner   => 'apache',
     group   => 'apache',
     mode    => '0600',
