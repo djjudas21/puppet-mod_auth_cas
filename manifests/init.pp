@@ -17,7 +17,11 @@ class mod_auth_cas (
   }
 
   file { 'auth_cas.conf':
-    name    => '/etc/httpd/conf.d/auth_cas.conf',
+    name    => $::osfamily ? {
+      'RedHat' => '/etc/httpd/conf.d/auth_cas.conf',
+      'Debian' => '/etc/apache2/conf-enabled/auth_cas.conf',
+      default  => '/etc/httpd/conf.d/auth_cas.conf',
+    },
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
