@@ -4,76 +4,59 @@
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with mod_auth_cas](#setup)
-    * [What mod_auth_cas affects](#what-mod_auth_cas-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with mod_auth_cas](#beginning-with-mod_auth_cas)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+3. [Usage - Configuration options and additional functionality](#usage)
+4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+This module installs and configures `auth_cas` for Apache httpd. This module is
+frequently used for single sign-on systems.
 
-## Module Description
-
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
-
-## Setup
-
-### What mod_auth_cas affects
-
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-### Beginning with mod_auth_cas
-
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+This module depends on `puppetlabs/apache` to install and configure Apache httpd.
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+This module takes the following parameters, most of which are required.
 
-## Reference
+### `certificatepath`
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+The path to the CA certificate used to validate the CAS server. Required.
+
+### `loginurl`
+
+The URL to redirect users to when they attempt to access a CAS
+protected resource and do not have an existing session. Required.
+
+### `validateurl`
+
+The URL to use when validating a ticket presented by a client in
+the HTTP query string (ticket=...).
+
+### `proxyvalidateurl`
+
+The URL to use when performing a proxy validation. This is currently
+an unimplemented feature, so setting this will have no effect.
+
+### `path`
+
+The path in which to install the CAS cache. Optional, defaults to `/cas`.
+
+### `version` = 1
+
+The version of the CAS protocol to use. Optional, defaults to `1`.
+
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This module was written for use with CentOS 6 and Apache 2.2.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Feel free to send pull requests for new features. A lot of the possible CAS
+configuration parameters are not (yet) implemented in this module because
+they aren't used at my site.
 
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+Also welcome are modifications to support other distributions, or simply
+a note to say it works as-is on your distro.
