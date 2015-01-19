@@ -8,6 +8,7 @@ class mod_auth_cas (
   $version = 1,
 ) {
 
+  # Install auth_cas with package manager
   package { 'mod_auth_cas':
     ensure => installed,
     name   => $::osfamily ? {
@@ -17,6 +18,7 @@ class mod_auth_cas (
     },
   }
 
+  # Install site-specific config file
   file { 'auth_cas.conf':
     name    => $::osfamily ? {
       'RedHat' => '/etc/httpd/conf.d/auth_cas.conf',
