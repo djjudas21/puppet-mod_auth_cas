@@ -17,6 +17,13 @@ class mod_auth_cas (
     default  => 'mod_auth_cas',
   }
 
+  # Figure out the config path for our distro
+  $configpath = $::osfamily ? {
+    'RedHat' => '/etc/httpd/conf.d',
+    'Debian' => '/etc/apache2/conf-enabled',
+    default  => '/etc/httpd/conf.d',
+  }
+
   # Call upon custom apache::mod
   apache::mod { 'auth_cas':
     package => $package,
@@ -24,11 +31,7 @@ class mod_auth_cas (
 
   # Install site-specific config file
   file { 'auth_cas.conf':
-    name    => $::osfamily ? {
-      'RedHat' => '/etc/httpd/conf.d/auth_cas.conf',
-      'Debian' => '/etc/apache2/conf-enabled/auth_cas.conf',
-      default  => '/etc/httpd/conf.d/auth_cas.conf',
-    },
+    name    => "${configpath}/auth_cas.conf",
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
