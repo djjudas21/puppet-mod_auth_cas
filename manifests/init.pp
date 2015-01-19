@@ -26,7 +26,7 @@ class mod_auth_cas (
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
-    source  => 'puppet:///modules/httpd/mod_auth_cas/auth_cas.conf',
+    content => template('mod_auth_cas/auth_cas.conf.erb'),
     notify  => Service['httpd'],
     require => Package['httpd'],
   }
