@@ -7,15 +7,19 @@ class mod_auth_cas (
   $path = '/cas',
   $version = 1,
 ) {
+  # Include basic apache machinery
+  include apache
 
-  # Install auth_cas with package manager
-  package { 'mod_auth_cas':
-    ensure => installed,
-    name   => $::osfamily ? {
-      'RedHat' => 'mod_auth_cas',
-      'Debian' => 'libapache2-mod-auth-cas',
-      default  => 'mod_auth_cas',
-    },
+  # Figure out the package name for our distro
+  $package = $::osfamily ? {
+    'RedHat' => 'mod_auth_cas',
+    'Debian' => 'libapache2-mod-auth-cas',
+    default  => 'mod_auth_cas',
+  }
+
+  # Call upon custom apache::mod
+  apache::mod { 'auth_cas':
+    package => $package,
   }
 
   # Install site-specific config file
