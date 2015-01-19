@@ -43,7 +43,7 @@ an unimplemented feature, so setting this will have no effect.
 
 The path in which to install the CAS cache. Optional, defaults to `/cas`.
 
-### `version` = 1
+### `version`
 
 The version of the CAS protocol to use. Optional, defaults to `1`.
 
