@@ -8,7 +8,13 @@ class mod_auth_cas (
   $version = 1,
 ) {
 
-  package {'mod_auth_cas': ensure => installed}
+  package { 'mod_auth_cas':
+    ensure => installed,
+    name   => $::osfamily ? {
+      'RedHat' => 'mod_auth_cas',
+      'Debian'  => 'libapache2-mod-auth-cas',
+    }
+  }
 
   file { 'auth_cas.conf':
     name    => '/etc/httpd/conf.d/auth_cas.conf',
