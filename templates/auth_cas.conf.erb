@@ -7,8 +7,6 @@
 LoadModule ssl_module modules/mod_ssl.so
 </IfModule>
 
-LoadModule auth_cas_module modules/mod_auth_cas.so
-
 CASCertificatePath <%= @certificatepath %>
 CASLoginURL <%= @loginurl %>
 CASValidateURL <%= @validateurl %>
