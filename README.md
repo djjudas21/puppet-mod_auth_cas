@@ -62,7 +62,9 @@ to turn this off as it presents a security risk. Optional, defaults to `On`.
 
 ## Limitations
 
-This module was written for use with CentOS 6 and Apache 2.2.
+This module was written for use with CentOS 6 and Apache 2.2 and has since
+been extended to work with CentOS 7 and Apache 2.4. It should work with
+Debian too, but this hasn't been tested. Please let me know how you get on.
 
 ## Development
 

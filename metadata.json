@@ -7,6 +7,13 @@
   "source": "https://github.com/djjudas21/puppet-mod_auth_cas",
   "project_page": "https://github.com/djjudas21/puppet-mod_auth_cas",
   "issues_url": "https://github.com/djjudas21/puppet-mod_auth_cas/issues",
+  "tags": [ "apache", "httpd", "cas", "mod_auth_cas" ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [ "6", "7" ]
+    }
+  ],
   "dependencies": [
     {
       "name": "puppetlabs/apache",
