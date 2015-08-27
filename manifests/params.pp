@@ -8,4 +8,17 @@ class mod_auth_cas::params {
     default  => '/etc/pki/tls/certs/ca-bundle.crt',
   }
 
+  # Package name for our distro
+  $package = $::osfamily ? {
+    'RedHat' => 'mod_auth_cas',
+    'Debian' => 'libapache2-mod-auth-cas',
+    default  => 'mod_auth_cas',
+  }
+
+  # Config path for our distro
+  $configpath = $::osfamily ? {
+    'RedHat' => '/etc/httpd/conf.d',
+    'Debian' => '/etc/apache2/conf-enabled',
+    default  => '/etc/httpd/conf.d',
+  }
 }

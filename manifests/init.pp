@@ -1,6 +1,6 @@
 # == Class: mod_auth_cas
 class mod_auth_cas (
-  $certificatepath = $mod_auth_cas::params::certificatepath,
+  $certificatepath = $::mod_auth_cas::params::certificatepath,
   $loginurl,
   $validateurl,
   $proxyvalidateurl,
@@ -10,28 +10,14 @@ class mod_auth_cas (
   # Include basic apache machinery
   include apache
 
-  # Figure out the package name for our distro
-  $package = $::osfamily ? {
-    'RedHat' => 'mod_auth_cas',
-    'Debian' => 'libapache2-mod-auth-cas',
-    default  => 'mod_auth_cas',
-  }
-
-  # Figure out the config path for our distro
-  $configpath = $::osfamily ? {
-    'RedHat' => '/etc/httpd/conf.d',
-    'Debian' => '/etc/apache2/conf-enabled',
-    default  => '/etc/httpd/conf.d',
-  }
-
   # Call upon custom apache::mod
   apache::mod { 'auth_cas':
-    package => $package,
+    package => $::mod_auth_cas::params::package,
   }
 
   # Install site-specific config file
   file { 'auth_cas.conf':
-    name    => "${configpath}/auth_cas.conf",
+    name    => "${::mod_auth_cas::params::configpath}/auth_cas.conf",
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
