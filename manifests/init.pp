@@ -6,6 +6,8 @@ class mod_auth_cas (
   $proxyvalidateurl,
   $path = '/cas',
   $version = 1,
+  $debug = 'Off',
+  $validateserver = 'On',
 ) {
   # Include basic apache machinery
   include apache
