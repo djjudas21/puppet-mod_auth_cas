@@ -47,7 +47,7 @@ class mod_auth_cas (
     group   => 'apache',
     mode    => '0775',
     seluser => 'system_u',
-    seltype => 'httpd_sys_content_t',
+    seltype => 'httpd_sys_rw_content_t',
     selrole => 'object_r',
   }
 
@@ -57,7 +57,7 @@ class mod_auth_cas (
     group   => 'apache',
     mode    => '0600',
     seluser => 'system_u',
-    seltype => 'httpd_sys_content_t',
+    seltype => 'httpd_sys_rw_content_t',
     selrole => 'object_r',
   }
 }
