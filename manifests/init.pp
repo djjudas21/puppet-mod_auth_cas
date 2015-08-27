@@ -8,7 +8,7 @@ class mod_auth_cas (
   $version = 1,
   $debug = 'Off',
   $validateserver = 'On',
-) {
+) inherits mod_auth_cas::params {
 
   # Validate parameters
   validate_re($debug, '^O(n|ff)$', '$debug must be On or Off')
