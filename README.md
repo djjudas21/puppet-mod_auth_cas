@@ -22,7 +22,9 @@ This module takes the following parameters, most of which are required.
 
 ### `certificatepath`
 
-The path to the CA certificate used to validate the CAS server. Required.
+The path to the CA certificate used to validate the CAS server. Optional, defaults
+to `/etc/pki/tls/certs/ca-bundle.crt` on Red Hat systems and `/etc/ssl/certs/ca-certificates.crt`
+on Debian systems.
 
 ### `loginurl`
 
