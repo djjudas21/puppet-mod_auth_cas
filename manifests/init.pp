@@ -9,6 +9,14 @@ class mod_auth_cas (
   $debug = 'Off',
   $validateserver = 'On',
 ) {
+
+  # Validate parameters
+  validate_re($debug, '^O(n|ff)$', '$debug must be On or Off')
+  validate_re($validateserver, '^O(n|ff)$', '$validateserver must be On or Off')
+  validate_integer($version)
+  validate_absolute_path($certificatepath)
+  validate_absolute_path($path)
+
   # Include basic apache machinery
   include apache
 
