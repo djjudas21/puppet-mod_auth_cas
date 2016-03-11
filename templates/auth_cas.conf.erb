@@ -4,7 +4,7 @@
 #
 
 <IfModule !mod_ssl.c>
-LoadModule ssl_module modules/mod_ssl.so
+LoadModule ssl_module <%= @module_path %>/mod_ssl.so
 </IfModule>
 
 CASCertificatePath <%= @certificatepath %>

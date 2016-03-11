@@ -31,7 +31,12 @@ describe 'mod_auth_cas' do
       })
     end
     
-    it { should contain_file('auth_cas.conf').with_path('/etc/httpd/conf.d/auth_cas.conf') }
+    it do
+      should contain_file('auth_cas.conf').with({
+        path: '/etc/httpd/conf.d/auth_cas.conf',
+        content: /LoadModule\ ssl_module\ modules\/mod_ssl\.so/
+      })
+    end
 
   end
 
@@ -64,7 +69,12 @@ describe 'mod_auth_cas' do
       })
     end
 
-    it { should contain_file('auth_cas.conf').with_path('/etc/apache2/mods-available/auth_cas.conf') }
+    it do
+      should contain_file('auth_cas.conf').with({
+        path: '/etc/apache2/mods-available/auth_cas.conf',
+        content: /LoadModule\ ssl_module\ \/usr\/lib\/apache2\/modules\/mod_ssl\.so/
+      })
+    end
 
   end
 
