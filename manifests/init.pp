@@ -25,6 +25,11 @@ class mod_auth_cas (
     package => $::mod_auth_cas::params::package,
   }
 
+  $apache_user  = $::osfamily ? {
+    'Debian' => 'www-data',
+    default  => 'apache',
+  }
+
   $apache_group = $::osfamily ? {
     'Debian' => 'www-data',
     default  => 'apache',
@@ -54,7 +59,7 @@ class mod_auth_cas (
 
   # Don't create it, but do set security context
   file { "${path}/cache/.metadata":
-    owner   => 'apache',
+    owner   => $apache_user,
     group   => $apache_group,
     mode    => '0600',
     seluser => 'system_u',

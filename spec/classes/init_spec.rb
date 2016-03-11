@@ -24,7 +24,12 @@ describe 'mod_auth_cas' do
     
     it { should contain_file('/cas/cache').with_group('apache') }
 
-    it { should contain_file('/cas/cache/.metadata').with_group('apache') }
+    it do
+      should contain_file('/cas/cache/.metadata').with({
+        owner: 'apache',
+        group: 'apache'
+      })
+    end
     
     it { should contain_file('auth_cas.conf').with_path('/etc/httpd/conf.d/auth_cas.conf') }
 
@@ -52,7 +57,12 @@ describe 'mod_auth_cas' do
 
     it { should contain_file('/cas/cache').with_group('www-data') }
 
-    it { should contain_file('/cas/cache/.metadata').with_group('www-data') }
+    it do
+      should contain_file('/cas/cache/.metadata').with({
+        owner: 'www-data',
+        group: 'www-data'
+      })
+    end
 
     it { should contain_file('auth_cas.conf').with_path('/etc/apache2/mods-available/auth_cas.conf') }
 
