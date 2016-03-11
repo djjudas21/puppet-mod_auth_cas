@@ -25,6 +25,9 @@ describe 'mod_auth_cas' do
     it { should contain_file('/cas/cache').with_group('apache') }
 
     it { should contain_file('/cas/cache/.metadata').with_group('apache') }
+    
+    it { should contain_file('auth_cas.conf').with_path('/etc/httpd/conf.d/auth_cas.conf') }
+
   end
 
   context 'on Debian-based/Ubuntu' do
@@ -50,6 +53,8 @@ describe 'mod_auth_cas' do
     it { should contain_file('/cas/cache').with_group('www-data') }
 
     it { should contain_file('/cas/cache/.metadata').with_group('www-data') }
+
+    it { should contain_file('auth_cas.conf').with_path('/etc/apache2/mods-available/auth_cas.conf') }
 
   end
 
