@@ -10,7 +10,9 @@ LoadModule ssl_module <%= @module_path %>/mod_ssl.so
 CASCertificatePath <%= @certificatepath %>
 CASLoginURL <%= @loginurl %>
 CASValidateURL <%= @validateurl %>
+<% if @proxyvalidateurl %>
 CASProxyValidateURL <%= @proxyvalidateurl %>
+<% end %>
 CASCookiePath <%= @path %>/cache/
 CASVersion <%= @version %>
 CASDebug <%= @debug %>
