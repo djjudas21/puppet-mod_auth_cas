@@ -25,6 +25,11 @@ class mod_auth_cas (
     package => $::mod_auth_cas::params::package,
   }
 
+  $apache_group = $::osfamily ? {
+    'Debian' => 'www-data',
+    default  => 'apache',
+  }
+
   # Install site-specific config file
   file { 'auth_cas.conf':
     name    => "${::mod_auth_cas::params::configpath}/auth_cas.conf",
@@ -40,7 +45,7 @@ class mod_auth_cas (
   file { [ $path, "${path}/cache"] :
     ensure  => directory,
     owner   => 'root',
-    group   => 'apache',
+    group   => $apache_group,
     mode    => '0775',
     seluser => 'system_u',
     seltype => 'httpd_sys_rw_content_t',
@@ -50,7 +55,7 @@ class mod_auth_cas (
   # Don't create it, but do set security context
   file { "${path}/cache/.metadata":
     owner   => 'apache',
-    group   => 'apache',
+    group   => $apache_group,
     mode    => '0600',
     seluser => 'system_u',
     seltype => 'httpd_sys_rw_content_t',
