@@ -18,7 +18,15 @@ class mod_auth_cas::params {
   # Config path for our distro
   $configpath = $::osfamily ? {
     'RedHat' => '/etc/httpd/conf.d',
-    'Debian' => '/etc/apache2/conf-enabled',
+    'Debian' => '/etc/apache2/mods-available',
     default  => '/etc/httpd/conf.d',
   }
+
+  # Module path for our distro
+  $module_path = $::osfamily ? {
+    'RedHat' => 'modules',
+    'Debian' => '/usr/lib/apache2/modules',
+    default  => 'modules',
+  }
+
 }
