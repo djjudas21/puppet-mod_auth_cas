@@ -55,11 +55,6 @@ Enable debug messages from mod_auth_cas. For this to work, you also need
 to set `LogLevel Debug` in your global or vhost config. Optional,
 defaults to `Off`.
 
-### `validateserver`
-
-Validate the SSL certificate of your CAS server. It is not recommended
-to turn this off as it presents a security risk. Optional, defaults to `On`.
-
 ## Limitations
 
 This module was written for use with CentOS 6 and Apache 2.2 and has since
