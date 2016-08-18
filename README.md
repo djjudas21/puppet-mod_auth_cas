@@ -69,3 +69,9 @@ they aren't used at my site.
 
 Also welcome are modifications to support other distributions, or simply
 a note to say it works as-is on your distro.
+
+## Changelog
+
+### `0.4.0`
+
+  * [CASValidateServer functionality has been removed](https://github.com/Jasig/mod_auth_cas/commit/1b1032c230a3ddf9db9004326bd4d075ab602c0e) to retain compatibility with `mod_auth_cas` 1.1. Users must either fix their SSL certificate configuration using the `CASCertificatePath` directive, or switch to communicating with the CAS server over standard HTTP.
