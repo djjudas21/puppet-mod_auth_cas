@@ -1,9 +1,9 @@
 # == Class: mod_auth_cas
 class mod_auth_cas (
-  $certificatepath = $::mod_auth_cas::params::certificatepath,
   $loginurl,
   $validateurl,
   $proxyvalidateurl,
+  $certificatepath = $::mod_auth_cas::params::certificatepath,
   $path = '/cas',
   $version = 1,
   $debug = 'Off',
