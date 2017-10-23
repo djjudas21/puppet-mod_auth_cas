@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "author": "jgazeley",
   "summary": "Configure mod_auth_cas with Apache httpd",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/djjudas21/puppet-mod_auth_cas",
   "project_page": "https://github.com/djjudas21/puppet-mod_auth_cas",
   "issues_url": "https://github.com/djjudas21/puppet-mod_auth_cas/issues",
