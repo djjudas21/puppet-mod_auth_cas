@@ -7,12 +7,10 @@ class mod_auth_cas (
   $path = '/cas',
   $version = 1,
   $debug = 'Off',
-  $validateserver = 'On',
 ) inherits mod_auth_cas::params {
 
   # Validate parameters
   validate_re($debug, '^O(n|ff)$', '$debug must be On or Off')
-  validate_re($validateserver, '^O(n|ff)$', '$validateserver must be On or Off')
   validate_integer($version)
   validate_absolute_path($certificatepath)
   validate_absolute_path($path)

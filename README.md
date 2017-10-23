@@ -55,11 +55,6 @@ Enable debug messages from mod_auth_cas. For this to work, you also need
 to set `LogLevel Debug` in your global or vhost config. Optional,
 defaults to `Off`.
 
-### `validateserver`
-
-Validate the SSL certificate of your CAS server. It is not recommended
-to turn this off as it presents a security risk. Optional, defaults to `On`.
-
 ## Limitations
 
 This module was written for use with CentOS 6 and Apache 2.2 and has since
@@ -74,3 +69,9 @@ they aren't used at my site.
 
 Also welcome are modifications to support other distributions, or simply
 a note to say it works as-is on your distro.
+
+## Changelog
+
+### `0.4.0`
+
+  * [CASValidateServer functionality has been removed](https://github.com/Jasig/mod_auth_cas/commit/1b1032c230a3ddf9db9004326bd4d075ab602c0e) to retain compatibility with `mod_auth_cas` 1.1. Users must either fix their SSL certificate configuration using the `CASCertificatePath` directive, or switch to communicating with the CAS server over standard HTTP.
